@@ -1,4 +1,3 @@
-#include <MsTimer2.h>
 #include <StopWatch.h>
 #include "pitches.h"
 
@@ -48,7 +47,7 @@ String id = "2017154003";
 String seat = "X";    // 착석 
 String toilet = "X";  // 화장실
 String data = "";
-int attend = 0;
+int absentToilet = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -75,10 +74,10 @@ void loop() {
       Serial.println(data);
       MySW.reset();
 
-      if(toilet == "O"){ attend += 5; }
-      
+      if(toilet == "O"){ absentToilet += 5; }
+       
       colorLED();
-      piezoBuzzer();
+      //piezoBuzzer();
   } // out
   
   // 사람이 있는 경우
@@ -90,6 +89,8 @@ void loop() {
       Serial.println(data);
       MySW.reset();
 
+      absentToilet = 0;
+      
       colorLED();
   } // out
   notAttend();
@@ -97,17 +98,15 @@ void loop() {
 
 // 화장실 갈 때 누르는 버튼
 void toiletCnG() {
-  if(toilet == "O") {
-    toilet = "X";
-  } else{
+  if(toilet == "X") {
     toilet = "O";
   }
 }
 
 // 자리를 오래 비워 결석 처리
 void notAttend() {
-  if(attend > 60){
-    data = id + String(attend);
+  if(absentToilet == 30){
+    data = id + String(absentToilet);
     Serial.println(data);
   }
 }

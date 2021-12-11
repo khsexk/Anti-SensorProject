@@ -35,7 +35,7 @@ const parser = new parsers.Readline(
         }
 );
 
-var port = new SerialPort('COM4',{
+var port = new SerialPort('COM10',{
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
@@ -62,8 +62,7 @@ parser.on('data', function(data){
                     const table = db.collection('Table_Use_Information').doc(data.substring(0, data.length-3));
                     const seatIn = {
                         useInfo: true,
-                        toilet: false,
-                        absent: false
+                        toilet: false
                     };
                     table.update(seatIn);
                     console.log("Use Success");
@@ -72,8 +71,7 @@ parser.on('data', function(data){
                     const table = db.collection('Table_Use_Information').doc(data.substring(0, data.length-3));
                     const seatOut = {
                         useInfo: false,
-                        toilet: false,
-                        absent: false
+                        toilet: false
                     };
                     if(data.charAt(11) == 'O'){
                         seatOut.toilet = true;
@@ -81,7 +79,7 @@ parser.on('data', function(data){
                     table.update(seatOut);
                     console.log("Unuse Success"); 
                 }
-                if(data.substring(10, data.length-1) == "60"){
+                if(data.substring(10, data.length-1) == "20" || data.substring(10, data.length-1) == "30"){
                     const table = db.collection('Table_Use_Information').doc(data.substring(0, data.length-3));
                     const absentData = {
                         useInfo: false,
@@ -89,7 +87,7 @@ parser.on('data', function(data){
                         absent: true
                     };
                     table.update(absentData);
-                    console.log("Use Success");
+                    console.log("Absent");
                 }
                        
             } catch (error) {
