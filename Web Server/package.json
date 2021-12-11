@@ -2,10 +2,10 @@
   "name": "nodejs_firestore",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "nodemon appnp"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,6 @@
     "serialport": "^9.2.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.15"
   }
 }
