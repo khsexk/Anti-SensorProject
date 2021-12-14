@@ -77,7 +77,7 @@ void loop() {
       if(toilet == "O"){ absentToilet += 5; }
        
       colorLED();
-      //piezoBuzzer();
+      piezoBuzzer();
   } // out
   
   // 사람이 있는 경우
@@ -126,8 +126,7 @@ void colorLED() {
   }
   if(toilet == "O"){
     initLED();
-    digitalWrite(green, HIGH);
-    digitalWrite(red, HIGH);
+    digitalWrite(blue, HIGH);
   } else if(seat == "X" && toilet == "X"){
     initLED();
     digitalWrite(red, HIGH);

@@ -79,7 +79,7 @@ parser.on('data', function(data){
                     table.update(seatOut);
                     console.log("Unuse Success"); 
                 }
-                if(data.substring(10, data.length-1) == "20" || data.substring(10, data.length-1) == "30"){
+                if(data.substring(10, data.length-1) == "30"){
                     const table = db.collection('Table_Use_Information').doc(data.substring(0, data.length-3));
                     const absentData = {
                         useInfo: false,
